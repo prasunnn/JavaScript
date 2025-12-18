@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countries Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f0f0f0;
+        }
+        tr:nth-child(odd) {
+            background-color: #d9edf7;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">50 Countries Table</h2>
+<div id="countriesTable"></div>
+
+<script>
+    const countries = [
+        "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda",
+        "Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain",
+        "Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan",
+        "Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria",
+        "Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada",
+        "Central African Republic","Chad","Chile","China","Colombia","Comoros",
+        "Congo","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Denmark",
+        "Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador"
+    ];
+
+    const container = document.getElementById("countriesTable");
+    const table = document.createElement("table");
+    let row;
+
+    countries.forEach((country, index) => {
+        if (index % 6 === 0) {
+            row = document.createElement("tr");
+            table.appendChild(row);
+        }
+        const cell = document.createElement("td");
+        cell.textContent = country;
+        row.appendChild(cell);
+    });
+
+    container.appendChild(table);
+</script>
+
+</body>
+</html>

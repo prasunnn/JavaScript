@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reverse Fixed Number</title>
+</head>
+<body>
+  <h2>Reverse a Fixed Number</h2>
+  <p id="result"></p>
+  <script>
+    var num = 12345;
+    var reversed = Math.abs(num).toString().split('').reverse().join('');
+    var final = num < 0 ? -parseInt(reversed, 10) : parseInt(reversed, 10);
+    document.getElementById("result").textContent = "Number: " + num + "\nReversed: " + final;
+  </script>
+</body>
+</html>

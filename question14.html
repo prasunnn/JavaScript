@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sort Array</title>
+</head>
+<body>
+
+<h2>Sort Array Example</h2>
+
+<p id="result"></p>
+
+<script>
+    var arr1 = [3, 8, 7, 6, 5, -4, 3, 2, 1];
+
+    arr1.sort(function(a, b) {
+        return a - b;
+    });
+
+    document.getElementById("result").innerHTML = "Sorted Array: " + arr1.join(",");
+</script>
+
+</body>
+</html>

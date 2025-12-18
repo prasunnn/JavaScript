@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Colors with Ordinals</title>
+</head>
+<body>
+
+<h2>Color Choices</h2>
+
+<p id="result"></p>
+
+<script>
+    const colors = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+    const ordinals = ["th","st","nd","rd"]; 
+
+    let output = "";
+
+    for (let i = 0; i < colors.length; i++) {
+        let suffix = ordinals[(i + 1) % 10] || "th"; 
+        if ((i + 1) % 100 >= 11 && (i + 1) % 100 <= 13) suffix = "th"; 
+        output += (i + 1) + suffix + " choice is " + colors[i] + ".<br>";
+    }
+
+    document.getElementById("result").innerHTML = output;
+</script>
+
+</body>
+</html>

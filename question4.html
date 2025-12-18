@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Capitalize First Letter</title>
+</head>
+<body>
+<h2>Capitalize First Letter of Each Word</h2>
+<p id="result"></p>
+<script>
+    function capitalizeWords(str) {
+        return str
+            .split(" ")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+    }
+
+    const output = capitalizeWords("hello world this is javascript");
+    document.getElementById("result").innerHTML = output;
+</script>
+
+</body>
+</html>

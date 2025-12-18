@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Larger and Smaller Number</title>
+</head>
+<body>
+<h2>Find Larger and Smaller Number</h2>
+Enter first number: <input type="number" id="num1"><br><br>
+Enter second number: <input type="number" id="num2"><br><br>
+<button onclick="findLargerSmaller()">Check</button>
+<p id="result"></p>
+<script>
+    function findLargerSmaller() {
+        const a = parseFloat(document.getElementById("num1").value);
+        const b = parseFloat(document.getElementById("num2").value);
+        if (isNaN(a) || isNaN(b)) {
+            document.getElementById("result").innerHTML = "Please enter valid numbers.";
+            return;
+        }
+        let larger, smaller;
+        if (a > b) {
+            larger = a;
+            smaller = b;
+        } else if (b > a) {
+            larger = b;
+            smaller = a;
+        } else {
+            document.getElementById("result").innerHTML = "Both numbers are equal: " + a;
+            return;
+        }
+        document.getElementById("result").innerHTML =
+            "Larger number: " + larger + "<br>" +
+            "Smaller number: " + smaller;
+    }
+</script>
+</body>
+</html>

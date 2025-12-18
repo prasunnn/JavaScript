@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>30DaysOfJavaScript Challenges</title>
+    <style>
+        .wrapper {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1, h2 {
+            padding: 10px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            margin: 5px 0;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <h1 id="year">Asabeneh Yetayeh challenges in <span id="currentYear">2020</span></h1>
+    <h2 id="challengeTitle">30DaysOfJavaScript Challenge</h2>
+    <ul id="challengesList">
+        <li>Python Challenge Done</li>
+        <li>JavaScript Challenge Ongoing</li>
+        <li>React Challenge Coming</li>
+        <li>FullStack Challenge Coming</li>
+        <li>DataAnalysis Challenge Coming</li>
+        <li>ReactNative Challenge Coming</li>
+        <li>MachineLearning Challenge Coming</li>
+    </ul>
+</div>
+
+<script>
+    const yearSpan = document.getElementById("currentYear");
+    function getRandomColor() {
+        return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+    setInterval(() => {
+        yearSpan.style.color = getRandomColor();
+    }, 1000);
+
+    const challengeTitle = document.getElementById("challengeTitle");
+    setInterval(() => {
+        const now = new Date();
+        challengeTitle.textContent = `30DaysOfJavaScript Challenge - ${now.toLocaleString()}`;
+        challengeTitle.style.backgroundColor = getRandomColor();
+        challengeTitle.style.color = "#fff";
+        challengeTitle.style.padding = "10px";
+    }, 1000);
+
+    const challenges = document.querySelectorAll("#challengesList li");
+
+    challenges.forEach(li => {
+        if (li.textContent.includes("Done")) {
+            li.style.backgroundColor = "green"; 
+        } else if (li.textContent.includes("Ongoing")) {
+            li.style.backgroundColor = "yellow"; 
+            li.style.color = "black";
+        } else if (li.textContent.includes("Coming")) {
+            li.style.backgroundColor = "red"; 
+        }
+
+        li.style.borderRadius = "5px";
+    });
+</script>
+
+</body>
+</html>

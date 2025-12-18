@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Counter App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+        .counter-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .counter-display {
+            width: 60px;
+            height: 50px;
+            background-color: #f8d7da;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .counter-button {
+            width: 60px;
+            height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background-color: #2e7d32; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .reset-button {
+            display: block;
+            margin: 20px auto;
+            width: 120px;
+            height: 40px;
+            background-color: #2e7d32;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .counter-button:hover, .reset-button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Counter App</h1>
+
+<div class="counter-container">
+    <button id="decrement" class="counter-button">-</button>
+    <div id="counter" class="counter-display">0</div>
+    <button id="increment" class="counter-button">+</button>
+</div>
+
+<button id="reset" class="reset-button">Reset</button>
+
+<script>
+    const counterDisplay = document.getElementById("counter");
+    const incrementBtn = document.getElementById("increment");
+    const decrementBtn = document.getElementById("decrement");
+    const resetBtn = document.getElementById("reset");
+
+    let count = 0;
+
+    function updateDisplay() {
+        counterDisplay.textContent = count;
+    }
+
+    incrementBtn.addEventListener("click", () => {
+        count++;
+        updateDisplay();
+    });
+
+    decrementBtn.addEventListener("click", () => {
+        count--;
+        updateDisplay();
+    });
+
+    resetBtn.addEventListener("click", () => {
+        count = 0;
+        updateDisplay();
+    });
+
+    
+    updateDisplay();
+</script>
+
+</body>
+</html>

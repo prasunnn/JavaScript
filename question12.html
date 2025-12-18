@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Array</title>
+</head>
+<body>
+
+<h2>Check if Input is an Array</h2>
+
+Enter input (use comma-separated for arrays): <input type="text" id="inputValue" placeholder="e.g. 1,2,3 or hello"><br><br>
+
+<button onclick="checkArray()">Check</button>
+
+<p id="result"></p>
+
+<script>
+    function checkArray() {
+        const input = document.getElementById("inputValue").value;
+
+        let processedInput;
+        if (input.includes(',')) {
+            processedInput = input.split(',').map(item => item.trim());
+        } else {
+            processedInput = input;
+        }
+
+        const isArray = Array.isArray(processedInput);
+
+        document.getElementById("result").innerHTML =
+            isArray ? "The input is an array." : "The input is NOT an array.";
+    }
+</script>
+
+</body>
+</html>

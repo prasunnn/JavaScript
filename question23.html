@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remove Characters from String</title>
+</head>
+<body>
+
+<h2>Remove Specified Number of Characters from a String</h2>
+
+<p id="result"></p>
+
+<script>
+    function removeCharacters(str, n) {
+        return str.substring(n);
+    }
+
+    const originalString = "Hello World";
+    const numberToRemove = 6;
+
+    const newString = removeCharacters(originalString, numberToRemove);
+
+    document.getElementById("result").innerHTML = 
+        `Original String: "${originalString}"<br>` +
+        `After removing ${numberToRemove} characters: "${newString}"`;
+</script>
+
+</body>
+</html>

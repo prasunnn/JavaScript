@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person Account</title>
+</head>
+<body>
+
+<h2>Person Account Example</h2>
+
+<p id="result"></p>
+
+<script>
+    const personAccount = {
+        firstName: "John",
+        lastName: "Doe",
+        incomes: [
+            { amount: 5000, description: "Salary" },
+            { amount: 200, description: "Freelance" }
+        ],
+        expenses: [
+            { amount: 1500, description: "Rent" },
+            { amount: 200, description: "Groceries" }
+        ],
+
+        totalIncome: function() {
+            return this.incomes.reduce((acc, item) => acc + item.amount, 0);
+        },
+
+        totalExpense: function() {
+            return this.expenses.reduce((acc, item) => acc + item.amount, 0);
+        },
+
+        accountInfo: function() {
+            return `${this.firstName} ${this.lastName} has total income of ${this.totalIncome()} and total expenses of ${this.totalExpense()}.`;
+        },
+
+        addIncome: function(amount, description) {
+            this.incomes.push({ amount, description });
+        },
+
+        addExpense: function(amount, description) {
+            this.expenses.push({ amount, description });
+        },
+
+        accountBalance: function() {
+            return this.totalIncome() - this.totalExpense();
+        }
+    };
+
+    personAccount.addIncome(300, "Bonus");
+    personAccount.addExpense(100, "Transport");
+
+    let output = "";
+    output += personAccount.accountInfo() + "<br>";
+    output += "Account Balance: " + personAccount.accountBalance() + "<br><br>";
+
+    output += "Incomes:<br>";
+    personAccount.incomes.forEach(inc => {
+        output += `- ${inc.description}: ${inc.amount}<br>`;
+    });
+
+    output += "<br>Expenses:<br>";
+    personAccount.expenses.forEach(exp => {
+        output += `- ${exp.description}: ${exp.amount}<br>`;
+    });
+    document.getElementById("result").innerHTML = output;
+</script>
+
+</body>
+</html>

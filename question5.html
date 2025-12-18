@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date Formats</title>
+</head>
+<body>
+
+<h2>Current Date Formats</h2>
+
+<p id="result"></p>
+
+<script>
+    function getCurrentDateFormats() {
+        const today = new Date();
+
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months start at 0
+        const yyyy = today.getFullYear();
+
+        // Get full month name
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const monthName = monthNames[today.getMonth()];
+
+        // Get day name
+        const dayNames = [
+            "Sunday", "Monday", "Tuesday", "Wednesday",
+            "Thursday", "Friday", "Saturday"
+        ];
+        const dayName = dayNames[today.getDay()];
+
+        return `
+            mm-dd-yyyy : ${mm}-${dd}-${yyyy} <br>
+            mm/dd/yyyy : ${mm}/${dd}/${yyyy} <br>
+            dd-mm-yyyy : ${dd}-${mm}-${yyyy} <br>
+            dd/mm/yyyy : ${dd}/${mm}/${yyyy} <br>
+            yyyy month date day : ${yyyy} ${monthName} ${dd} ${dayName}
+        `;
+    }
+
+    document.getElementById("result").innerHTML = getCurrentDateFormats();
+</script>
+
+</body>
+</html>

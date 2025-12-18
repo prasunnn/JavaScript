@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alphabetical Order</title>
+</head>
+<body>
+<h2>Alphabetical Order of String</h2>
+<p id="result"></p>
+<script>
+    function alphabetOrder(str) {
+        return str.split('').sort().join('');
+    }
+    const output = alphabetOrder("javascript");
+    document.getElementById("result").innerHTML = output;
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog Object Example</title>
+</head>
+<body>
+
+<h2>Dog Object Example</h2>
+
+<p id="result"></p>
+
+<script>
+    const dog = {};
+
+    let output = "Empty dog object: " + JSON.stringify(dog) + "<br><br>";
+
+    dog.name = "Buddy";
+    dog.legs = 4;
+    dog.color = "Brown";
+    dog.age = 3;
+    dog.bark = function() {
+        return "Woof Woof";
+    };
+
+    output += "Dog object after adding properties:<br>" + JSON.stringify(dog) + "<br><br>";
+
+    output += `Name: ${dog.name}<br>`;
+    output += `Legs: ${dog.legs}<br>`;
+    output += `Color: ${dog.color}<br>`;
+    output += `Age: ${dog.age}<br>`;
+    output += `Bark: ${dog.bark()}<br><br>`;
+
+    dog.breed = "Labrador";
+    dog.getDogInfo = function() {
+        return `${this.name} is a ${this.age}-year-old ${this.color} ${this.breed} with ${this.legs} legs.`;
+    };
+
+    output += "Dog object after adding new properties:<br>" + JSON.stringify(dog) + "<br><br>";
+    output += "Dog Info: " + dog.getDogInfo();
+
+    document.getElementById("result").innerHTML = output;
+</script>
+
+</body>
+</html>

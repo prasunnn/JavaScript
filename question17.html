@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Largest of Five Numbers</title>
+</head>
+<body>
+
+<h2>Check Largest of Five Numbers</h2>
+
+<script>
+    const num1 = parseFloat(prompt("Enter the first number:"));
+    const num2 = parseFloat(prompt("Enter the second number:"));
+    const num3 = parseFloat(prompt("Enter the third number:"));
+    const num4 = parseFloat(prompt("Enter the fourth number:"));
+    const num5 = parseFloat(prompt("Enter the fifth number:"));
+
+    if ([num1, num2, num3, num4, num5].some(isNaN)) {
+        alert("Please enter valid numbers only.");
+    } else {
+        const largest = Math.max(num1, num2, num3, num4, num5);
+        alert("The largest number is: " + largest);
+    }
+</script>
+
+</body>
+</html>

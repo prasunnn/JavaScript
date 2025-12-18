@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Largest and Smallest of Three Numbers</title>
+</head>
+<body>
+
+<h2>Find Largest and Smallest Number</h2>
+
+Enter first number: <input type="number" id="num1"><br><br>
+Enter second number: <input type="number" id="num2"><br><br>
+Enter third number: <input type="number" id="num3"><br><br>
+
+<button onclick="findLargestSmallest()">Check</button>
+
+<p id="result"></p>
+
+<script>
+    function findLargestSmallest() {
+        const a = parseFloat(document.getElementById("num1").value);
+        const b = parseFloat(document.getElementById("num2").value);
+        const c = parseFloat(document.getElementById("num3").value);
+
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+            document.getElementById("result").innerHTML = "Please enter valid numbers.";
+            return;
+        }
+
+        const largest = Math.max(a, b, c);
+        const smallest = Math.min(a, b, c);
+
+        document.getElementById("result").innerHTML =
+            "Largest number: " + largest + "<br>" +
+            "Smallest number: " + smallest;
+    }
+</script>
+
+</body>
+</html>

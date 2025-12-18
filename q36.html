@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookie Manager</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    input, button {
+      margin: 5px;
+      padding: 8px;
+    }
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 50%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h2>Cookie Manager</h2>
+
+  <div>
+    <input type="text" id="keyInput" placeholder="Enter key">
+    <input type="text" id="valueInput" placeholder="Enter value">
+    <button onclick="setCookie()">Set Cookie</button>
+  </div>
+
+  <div>
+    <input type="text" id="readKey" placeholder="Key to read">
+    <button onclick="readCookie()">Read Cookie</button>
+    <span id="readResult"></span>
+  </div>
+
+  <div>
+    <button onclick="displayCookies()">Display All Cookies</button>
+    <table id="cookieTable">
+      <thead>
+        <tr><th>Key</th><th>Value</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div>
+    <input type="text" id="deleteKey" placeholder="Key to delete">
+    <button onclick="deleteCookie()">Delete Cookie</button>
+  </div>
+
+  <div>
+    <button onclick="deleteAllCookies()">Delete All Cookies</button>
+  </div>
+
+  <script>
+    function setCookie() {
+      const key = document.getElementById("keyInput").value;
+      const value = document.getElementById("valueInput").value;
+      if (key && value) {
+        document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; path=/`;
+        alert("Cookie set!");
+      }
+    }
+
+    function readCookie() {
+      const key = document.getElementById("readKey").value;
+      const cookies = document.cookie.split("; ");
+      for (let cookie of cookies) {
+        const [k, v] = cookie.split("=");
+        if (decodeURIComponent(k) === key) {
+          document.getElementById("readResult").textContent = `Value: ${decodeURIComponent(v)}`;
+          return;
+        }
+      }
+      document.getElementById("readResult").textContent = "Cookie not found.";
+    }
+
+    function displayCookies() {
+      const tbody = document.querySelector("#cookieTable tbody");
+      tbody.innerHTML = "";
+      const cookies = document.cookie.split("; ");
+      for (let cookie of cookies) {
+        const [k, v] = cookie.split("=");   
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${decodeURIComponent(k)}</td><td>${decodeURIComponent(v)}</td>`;
+        tbody.appendChild(row);
+      }
+    }
+
+    function deleteCookie() {
+      const key = document.getElementById("deleteKey").value;
+      document.cookie = `${encodeURIComponent(key)}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+      alert("Cookie deleted!");
+    }
+
+    function deleteAllCookies() {
+      const cookies = document.cookie.split("; ");
+      for (let cookie of cookies) {
+        const [k] = cookie.split("=");
+        document.cookie = `${k}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+      }
+      alert("All cookies deleted!");
+    }
+  </script>
+</body>
+</html>

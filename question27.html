@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Manipulation Example</title>
+    <style>
+        p {
+            padding: 5px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>DOM Manipulation Example</h2>
+
+<p id="para1">Paragraph 1</p>
+<p id="para2">Paragraph 2</p>
+<p id="para3">Paragraph 3</p>
+<p id="para4">Paragraph 4</p>
+
+<script>
+    const firstParaByTag = document.querySelector('p');
+    console.log("First paragraph by tag:", firstParaByTag.textContent);
+
+    const para1 = document.querySelector('#para1');
+    const para2 = document.querySelector('#para2');
+    const para3 = document.querySelector('#para3');
+    const para4 = document.querySelector('#para4');
+
+    const allParas = document.querySelectorAll('p');
+    console.log("All paragraphs:", allParas);
+
+    allParas.forEach((p, index) => {
+        console.log(`Paragraph ${index + 1} text:`, p.textContent);
+    });
+
+    para4.textContent = "Fourth Paragraph";
+
+    para1.id = "p1";
+    para1.className = "paraClass1";
+
+    para2.setAttribute("id", "p2");
+    para2.setAttribute("class", "paraClass2");
+
+    para3.id = "p3";
+    para3.classList.add("paraClass3");
+
+    para4.id = "p4";
+    para4.classList.add("paraClass4");
+
+    allParas.forEach(p => {
+        p.style.color = "blue";
+        p.style.backgroundColor = "#f0f0f0";
+        p.style.border = "1px solid black";
+        p.style.fontSize = "16px";
+        p.style.fontFamily = "Arial, sans-serif";
+        p.style.padding = "5px";
+    });
+
+    allParas.forEach((p, index) => {
+        if (index === 0 || index === 2) {
+            p.style.color = "green"; 
+        } else if (index === 1 || index === 3) {
+            p.style.color = "red";  
+        }
+    });
+
+    allParas.forEach((p, index) => {
+        p.textContent = `This is paragraph ${index + 1}`;
+        p.id = `paragraph${index + 1}`;
+        p.className = `paragraphClass${index + 1}`;
+    });
+
+</script>
+
+</body>
+</html>

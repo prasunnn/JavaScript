@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Generator</title>
+    <style>
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .number {
+            width: 50px;
+            height: 50px;
+            margin: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Number Generator with Even, Odd, Prime Colors</h2>
+
+<div style="text-align:center;">
+    Enter a number: <input type="number" id="userNumber" placeholder="e.g. 50">
+    <button onclick="generateNumbers()">Generate</button>
+</div>
+
+<div id="container"></div>
+
+<script>
+    const container = document.getElementById("container");
+
+    function isPrime(num) {
+        if (num < 2) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+        }
+        return true;
+    }
+
+    function generateNumbers() {
+        container.innerHTML = ""; 
+        const maxNumber = parseInt(document.getElementById("userNumber").value);
+
+        if (isNaN(maxNumber) || maxNumber < 1) {
+            alert("Please enter a valid number greater than 0.");
+            return;
+        }
+
+        for (let i = 1; i <= maxNumber; i++) {
+            const numberDiv = document.createElement("div");
+            numberDiv.className = "number";
+            numberDiv.textContent = i;
+
+            if (isPrime(i)) {
+                numberDiv.style.backgroundColor = "red";   
+            } else if (i % 2 === 0) {
+                numberDiv.style.backgroundColor = "green"; 
+            } else {
+                numberDiv.style.backgroundColor = "yellow"; 
+                numberDiv.style.color = "black";           
+            }
+
+            container.appendChild(numberDiv);
+        }
+    }
+</script>
+
+</body>
+</html>

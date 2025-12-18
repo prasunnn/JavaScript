@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Blank String</title>
+</head>
+<body>
+
+<h2>Check if String is Blank</h2>
+
+<p id="result"></p>
+
+<script>
+    function isBlank(str) {
+        return str.trim() === "";
+    }
+
+    const testString1 = "   ";
+    const testString2 = "Hello World";
+
+    let output = "";
+
+    output += `"${testString1}" is ` + (isBlank(testString1) ? "blank." : "not blank.") + "<br>";
+    output += `"${testString2}" is ` + (isBlank(testString2) ? "blank." : "not blank.");
+
+    document.getElementById("result").innerHTML = output;
+</script>
+
+</body>
+</html>
