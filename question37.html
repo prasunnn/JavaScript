@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clone & Remove Table Rows</title>
+  <style>
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    select, input {
+      padding: 5px;
+      width: 100%;
+    }
+    .trash {
+      color: red;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    #addBtn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">Duplicate / Clone Rows via JavaScript</h2>
+  <table id="productTable">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-no">1</td>
+        <td>
+          <select>
+            <option>Select Product</option>
+            <option>Apple</option>
+            <option>Banana</option>
+            <option>Orange</option>
+          </select>
+        </td>
+        <td><input type="text" placeholder="Enter price"></td>
+        <td><span class="trash" onclick="removeRow(this)">🗑️</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <button id="addBtn" onclick="addRow()">Add New</button>
+
+  <script>
+    function addRow() {
+      const table = document.getElementById("productTable").getElementsByTagName("tbody")[0];
+      const newRow = table.rows[0].cloneNode(true);
+
+      // Reset inputs
+      newRow.querySelector("select").selectedIndex = 0;
+      newRow.querySelector("input").value = "";
+
+      table.appendChild(newRow);
+      updateRowNumbers();
+    }
+
+    function removeRow(el) {
+      const row = el.closest("tr");
+      const table = document.getElementById("productTable").getElementsByTagName("tbody")[0];
+      if (table.rows.length > 1) {
+        row.remove();
+        updateRowNumbers();
+      } else {
+        alert("At least one row must remain.");
+      }
+    }
+
+    function updateRowNumbers() {
+      const rows = document.querySelectorAll("#productTable .row-no");
+      rows.forEach((cell, index) => {
+        cell.textContent = index + 1;
+      });
+    }
+  </script>
+</body>
+</html>

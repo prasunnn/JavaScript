@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+    .gender-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Registration Form</h2>
+  <form id="registrationForm" onsubmit="validateForm(event)">
+    <label>Name:
+      <input type="text" id="name">
+      <span class="error" id="nameError"></span>
+    </label>
+
+    <label>Address:
+      <input type="text" id="address">
+      <span class="error" id="addressError"></span>
+    </label>
+
+    <label>Username:
+      <input type="text" id="username">
+      <span class="error" id="usernameError"></span>
+    </label>
+
+    <label>Email:
+      <input type="email" id="email">
+      <span class="error" id="emailError"></span>
+    </label>
+
+    <label>Password:
+      <input type="password" id="password">
+      <span class="error" id="passwordError"></span>
+    </label>
+
+    <label>Website:
+      <input type="url" id="website">
+    </label>
+
+    <label>Phone:
+      <input type="text" id="phone">
+      <span class="error" id="phoneError"></span>
+    </label>
+
+    <label>Gender:
+      <div class="gender-group">
+        <label><input type="radio" name="gender" value="Male"> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+      </div>
+      <span class="error" id="genderError"></span>
+    </label>
+
+    <label>Course:
+      <select id="course">
+        <option value="">Select Course</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="Python">Python</option>
+        <option value="React">React</option>
+      </select>
+      <span class="error" id="courseError"></span>
+    </label>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+
+      let valid = true;
+
+      // Name
+      const name = document.getElementById("name").value.trim();
+      const nameError = document.getElementById("nameError");
+      if (!name || /\d/.test(name)) {
+        nameError.textContent = "Name cannot be empty or contain numbers.";
+        valid = false;
+      } else {
+        nameError.textContent = "";
+      }
+
+      // Address
+      const address = document.getElementById("address").value.trim();
+      const addressError = document.getElementById("addressError");
+      if (!address) {
+        addressError.textContent = "Address cannot be empty.";
+        valid = false;
+      } else {
+        addressError.textContent = "";
+      }
+
+      // Username
+      const username = document.getElementById("username").value.trim();
+      const usernameError = document.getElementById("usernameError");
+      if (!username || /[^a-zA-Z0-9_]/.test(username) || /\s/.test(username)) {
+        usernameError.textContent = "Username must not be empty and only contain letters, numbers, or _.";
+        valid = false;
+      } else {
+        usernameError.textContent = "";
+      }
+
+      // Email
+      const email = document.getElementById("email").value.trim();
+      const emailError = document.getElementById("emailError");
+      if (!email || !email.includes("@")) {
+        emailError.textContent = "Email must include '@' and not be empty.";
+        valid = false;
+      } else {
+        emailError.textContent = "";
+      }
+
+      // Password
+      const password = document.getElementById("password").value;
+      const passwordError = document.getElementById("passwordError");
+      const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+      if (!password || !passwordRegex.test(password)) {
+        passwordError.textContent = "Password must be 8+ chars, include digit, upper, lower, and special char.";
+        valid = false;
+      } else {
+        passwordError.textContent = "";
+      }
+
+      // Phone
+      const phone = document.getElementById("phone").value.trim();
+      const phoneError = document.getElementById("phoneError");
+      if (!phone || !/^(98|97|96)\d{8}$/.test(phone)) {
+        phoneError.textContent = "Phone must start with 98/97/96 and be 10 digits.";
+        valid = false;
+      } else {
+        phoneError.textContent = "";
+      }
+
+      // Gender
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const genderError = document.getElementById("genderError");
+      if (!gender) {
+        genderError.textContent = "Please select a gender.";
+        valid = false;
+      } else {
+        genderError.textContent = "";
+      }
+
+      // Course
+      const course = document.getElementById("course").value;
+      const courseError = document.getElementById("courseError");
+      if (!course) {
+        courseError.textContent = "Please select a course.";
+        valid = false;
+      } else {
+        courseError.textContent = "";
+      }
+
+      if (valid) {
+        alert("Form submitted successfully!");
+        document.getElementById("registrationForm").reset();
+      }
+    }
+  </script>
+</body>
+</html>
